@@ -147,14 +147,20 @@ function dibujar()
     }
 
     if(puerta){
-      if (cerdo.xPosition <=430 && cerdo.yPosition<= 430){
+      if (cerdo.xPosition <=430 && cerdo.yPosition<= 430 && cerdo.xPosition >= 1 && cerdo.yPosition >= 1){
         papel.drawImage(cerdo.imagen, cerdo.xPosition, cerdo.yPosition);
       }
-      else if(cerdo.xPosition <=430){
+      else if(cerdo.xPosition <=430 && cerdo.xPosition >= 1 && cerdo.yPosition <=1 && cerdo.xPosition <= 1){
         papel.drawImage(cerdo.imagen, 430, cerdo.yPosition);
       }
-      else if(cerdo.yPosition <=430){
+      else if(cerdo.yPosition <=430 && cerdo.yPosition >= 1  && cerdo.xPosition >= 1){
         papel.drawImage(cerdo.imagen, cerdo.xPosition,430);
+      }
+      else if(cerdo.xPosition <=1){
+        papel.drawImage(cerdo.imagen, 1,cerdo.yPosition);
+      }
+      else if(cerdo.yPosition <=1){
+        papel.drawImage(cerdo.imagen, cerdo.xPosition,1);
       }
     }
   }
@@ -179,7 +185,9 @@ function mover(evento) {
     switch(evento.keyCode)
     {
       case teclas.UP:
-        cerdo.yPosition = cerdo.yPosition  - cerdo.movimiento;
+        if (cerdo.yPosition >= 1) {
+          cerdo.yPosition = cerdo.yPosition  - cerdo.movimiento;
+        }
         puerta = true;
         dibujar();
         break;
@@ -191,12 +199,14 @@ function mover(evento) {
         dibujar();
         break;
       case teclas.LEFT:
-        cerdo.xPosition = cerdo.xPosition - cerdo.movimiento;
+        if (cerdo.xPosition >= 1) {
+          cerdo.xPosition = cerdo.xPosition - cerdo.movimiento
+        }
         puerta = true;
         dibujar();
         break;
       case teclas.RIGHT:
-        if (cerdo.xPosition <=420){
+        if (cerdo.xPosition <=420 ){
           cerdo.xPosition = cerdo.xPosition + cerdo.movimiento;
         }
         puerta = true;
