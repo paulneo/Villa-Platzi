@@ -147,7 +147,15 @@ function dibujar()
     }
 
     if(puerta){
-      papel.drawImage(cerdo.imagen, cerdo.xPosition, cerdo.yPosition);
+      if (cerdo.xPosition <=430 && cerdo.yPosition<= 430){
+        papel.drawImage(cerdo.imagen, cerdo.xPosition, cerdo.yPosition);
+      }
+      else if(cerdo.xPosition <=430){
+        papel.drawImage(cerdo.imagen, 430, cerdo.yPosition);
+      }
+      else if(cerdo.yPosition <=430){
+        papel.drawImage(cerdo.imagen, cerdo.xPosition,430);
+      }
     }
   }
   if (!dibujadoPollo && !dibujadovaca) {
@@ -176,7 +184,9 @@ function mover(evento) {
         dibujar();
         break;
       case teclas.DOWN:
-        cerdo.yPosition  = cerdo.yPosition  + cerdo.movimiento;
+          if (cerdo.yPosition<= 420){
+            cerdo.yPosition  = cerdo.yPosition  + cerdo.movimiento;
+          }
         puerta = true;
         dibujar();
         break;
@@ -186,7 +196,9 @@ function mover(evento) {
         dibujar();
         break;
       case teclas.RIGHT:
-        cerdo.xPosition = cerdo.xPosition + cerdo.movimiento;
+        if (cerdo.xPosition <=420){
+          cerdo.xPosition = cerdo.xPosition + cerdo.movimiento;
+        }
         puerta = true;
         dibujar();
         break;
